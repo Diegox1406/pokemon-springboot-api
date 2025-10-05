@@ -1,6 +1,7 @@
 package com.dpaz.pokemonreview.controllers;
 
 import com.dpaz.pokemonreview.dto.PokemonDto;
+import com.dpaz.pokemonreview.dto.PokemonResponse;
 import com.dpaz.pokemonreview.services.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +22,11 @@ public class PokemonController {
     }
 
     @GetMapping("/pokemon")
-    public ResponseEntity<List<PokemonDto>> getPokemons(){
-        return new ResponseEntity<>(pokemonService.getAllPokemon(), HttpStatus.OK);
+    public ResponseEntity<PokemonResponse> getPokemons(
+            @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
+    ){
+        return new ResponseEntity<>(pokemonService.getAllPokemon(pageNo, pageSize), HttpStatus.OK);
     }
 
     @GetMapping("/pokemon/{id}")

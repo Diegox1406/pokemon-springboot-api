@@ -1,12 +1,11 @@
 package com.dpaz.pokemonreview.services;
 
 import com.dpaz.pokemonreview.dto.PokemonDto;
-
-import java.util.List;
+import com.dpaz.pokemonreview.dto.PokemonResponse;
 
 public interface PokemonService {
     PokemonDto createPokemon(PokemonDto pokemonDto);
-    List<PokemonDto> getAllPokemon();
+    PokemonResponse getAllPokemon(int pageNo, int pageSize);
     PokemonDto getPokemonById(int id);
     PokemonDto updatePokemon(PokemonDto pokemonDto, int id);
     void deletePokemon(int id);
